@@ -8,7 +8,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'rooms', 'experiences', 'gallery', 'location', 'contact'];
+    const sectionIds = ['home', 'about', 'rooms', 'experiences', 'accolades', 'gallery', 'faq', 'location', 'contact'];
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);

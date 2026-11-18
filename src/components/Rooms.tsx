@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Images } from 'lucide-react';
+import { ArrowRight, BedDouble, Eye, Images, Maximize2 } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import SuiteDialog from '@/components/SuiteDialog';
 import { suiteCategories, type SuiteCategory } from '@/lib/siteData';
@@ -27,7 +27,7 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
     <section id="rooms" className="bg-sand-100 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Accommodation</p>
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Accommodations</p>
           <h2 className="mt-4 font-serif text-4xl font-medium sm:text-5xl">Our Rooms and Suites</h2>
           <p className="mt-4 text-base italic text-gold-600">
             Browse our four curated collections, explore full suite details with photos, and choose your private sanctuary.
@@ -43,7 +43,12 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
             <div key={category.id} className="mt-20 first:mt-16">
               <Reveal className="flex flex-col gap-4 border-b border-sand-300 pb-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <h3 className="font-serif text-3xl font-medium text-ink-900">{category.title}</h3>
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-serif text-2xl font-bold tracking-widest text-gold-600 sm:text-3xl">
+                      {category.roman}
+                    </span>
+                    <h3 className="font-serif text-3xl font-medium text-ink-900">{category.title}</h3>
+                  </div>
                   <p className="mt-2 max-w-2xl leading-relaxed text-ink-700">{category.summary}</p>
                   {/* Suite names listed under the group so visitors can browse them easily */}
                   <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -90,6 +95,23 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
                           <span className="text-xs uppercase tracking-wider text-gold-600">{category.title.replace(' Suites', '')}</span>
                         </div>
                         <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-700">{suite.description}</p>
+
+                        {/* Quick-Specs Chips */}
+                        <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sand-100 px-2.5 py-1 text-[11px] font-medium text-ink-800">
+                            <Maximize2 className="h-3 w-3 text-gold-600" aria-hidden="true" />
+                            {suite.size}
+                          </span>
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sand-100 px-2.5 py-1 text-[11px] font-medium text-ink-800">
+                            <BedDouble className="h-3 w-3 text-gold-600" aria-hidden="true" />
+                            {suite.bed}
+                          </span>
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sand-100 px-2.5 py-1 text-[11px] font-medium text-ink-800">
+                            <Eye className="h-3 w-3 text-gold-600" aria-hidden="true" />
+                            {suite.view}
+                          </span>
+                        </div>
+
                         <div className="mt-6 flex items-center justify-between border-t border-sand-200 pt-4">
                           <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 transition-colors group-hover:text-gold-500">
                             View Suite Details

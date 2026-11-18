@@ -119,22 +119,24 @@ export default function SuiteDialog({ suite, category, onClose, onBook }: SuiteD
           </h3>
           <p className="mt-4 text-base leading-relaxed text-ink-700">{suite.description}</p>
 
-          {(suite.size || suite.guests) && (
-            <dl className="mt-8 grid gap-4 rounded-2xl border border-sand-200 bg-white p-5 text-sm sm:grid-cols-2">
-              {suite.size && (
-                <div>
-                  <dt className="text-ink-700">Size</dt>
-                  <dd className="mt-1 font-semibold text-ink-900">{suite.size}</dd>
-                </div>
-              )}
-              {suite.guests && (
-                <div>
-                  <dt className="text-ink-700">Guests</dt>
-                  <dd className="mt-1 font-semibold text-ink-900">{suite.guests}</dd>
-                </div>
-              )}
-            </dl>
-          )}
+          <dl className="mt-8 grid gap-4 rounded-2xl border border-sand-200 bg-white p-5 text-sm sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink-700">Suite Size</dt>
+              <dd className="mt-1 font-semibold text-ink-900">{suite.size}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink-700">Bedding</dt>
+              <dd className="mt-1 font-semibold text-ink-900">{suite.bed}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink-700">View & Outlook</dt>
+              <dd className="mt-1 font-semibold text-ink-900">{suite.view}</dd>
+            </div>
+            <div>
+              <dt className="text-xs font-semibold uppercase tracking-wider text-ink-700">Max Capacity</dt>
+              <dd className="mt-1 font-semibold text-ink-900">{suite.guests}</dd>
+            </div>
+          </dl>
 
           <button
             type="button"

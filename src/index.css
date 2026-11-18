@@ -18,6 +18,23 @@
   }
 }
 
+@layer utilities {
+  .bg-gold-foil {
+    background: linear-gradient(135deg, #e2c98f 0%, #d2b06a 45%, #b8924a 75%, #e2c98f 100%);
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #d2b06a 0%, #b8924a 50%, #9a7535 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-linen-subtle {
+    background-image: radial-gradient(rgba(210, 176, 106, 0.05) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
