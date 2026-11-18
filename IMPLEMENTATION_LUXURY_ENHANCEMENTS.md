@@ -17,9 +17,8 @@ This implementation plan builds upon the clean, verified foundation of Irida Hot
 3. **Atmosphere & Sensory Micro-Widgets:**
    - A delicate **Parga Climate & Sunset Indicator** in the Hero (`Parga, Greece • 25°C Sunny • Sunset at 20:18`).
    - An optional **Coastal Soundscape Audio Player** (muted by default with a subtle pulsing wave indicator) offering soft Ionian sea waves and breeze.
-4. **Guest Accolades & Concierge FAQ:**
+4. **Guest Accolades & Testimonials:**
    - A minimalist, high-typography guest quote carousel/strip featuring verified international traveler reflections.
-   - A refined boutique concierge accordion answering key travel concerns (Aktion PVK airport transfers, artisanal breakfast, private parking, tranquility policy).
 5. **Tactile & Interactive Luxury Polish:**
    - **Sticky Mobile Booking Pill:** A floating glassmorphic pill on mobile screens offering one-tap access to the booking calendar when scrolling past the hero.
    - **Tactile Depth:** Subtle gold-foil metallic CSS gradients and micro-grain texture on sand backgrounds to eliminate digital sterility.
@@ -66,10 +65,6 @@ This implementation plan builds upon the clean, verified foundation of Irida Hot
                                   ▼
 [ 5. Gallery (#gallery) ]
   • Masonry photo grid with category filters & lightbox
-                                  │
-                                  ▼
-[ NEW: Boutique Concierge FAQ (#faq) ]
-  • Clean accordion: Airport transfers (PVK), breakfast, parking, check-in, peace policy
                                   │
                                   ▼
 [ 6. Location (#location) ]
@@ -167,10 +162,9 @@ Use this checklist to track execution across phases.
 - [x] **3.3** Create `src/components/SoundscapePlayer.tsx` with muted default, gentle play/pause state, and animated soundwave icon.
 - [x] **3.4** Integrate `SoundscapePlayer` unobtrusively in the UI (floating bottom corner or sticky header).
 
-### Phase 4: Trust & Concierge Features
+### Phase 4: Trust & Editorial Features
 - [x] **4.1** Create `src/components/Testimonials.tsx` with high-typography pull-quotes and guest location badges.
-- [x] **4.2** Create `src/components/ConciergeFAQ.tsx` with an accessible, smooth accordion.
-- [x] **4.3** Mount `Testimonials` and `ConciergeFAQ` into `src/App.tsx` in the designated visitor journey spots.
+- [x] **4.2** Mount `Testimonials` into `src/App.tsx` in the designated visitor journey spots (Concierge FAQ removed per user preference).
 
 ### Phase 5: Mobile Floating Pill & Tactile Styling Polish
 - [x] **5.1** Create `src/components/MobileBookingPill.tsx` (floating bottom pill visible on mobile on scroll).

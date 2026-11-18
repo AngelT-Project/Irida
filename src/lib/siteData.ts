@@ -161,51 +161,6 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export type ConciergeFaq = {
-  id: string;
-  question: string;
-  answer: string;
-};
-
-export const conciergeFaqs: ConciergeFaq[] = [
-  {
-    id: 'reach',
-    question: 'What is the most convenient way to reach Irida Hotel?',
-    answer:
-      'Aktion / Preveza National Airport (PVK) is located approximately 55 minutes by car. We can arrange a private chauffeured transfer directly to our front desk upon request. Alternatively, Ioannina Airport (IOA) is accessible in about 75 minutes.',
-  },
-  {
-    id: 'breakfast',
-    question: 'What is included in the morning breakfast service?',
-    answer:
-      'An artisanal Greek breakfast featuring seasonal Epirotic fruits, local honey, farm-fresh eggs, freshly baked pastries, and Greek coffee, served with panoramic sea views from 08:00 to 11:00.',
-  },
-  {
-    id: 'parking',
-    question: 'Is parking available on site?',
-    answer:
-      'Yes, complimentary private parking is reserved exclusively for hotel guests within our secured grounds. No reservation is required.',
-  },
-  {
-    id: 'tranquility',
-    question: "What is the hotel's policy on tranquility and age?",
-    answer:
-      'To preserve our serene, slow-paced atmosphere, Irida Hotel is specifically curated for adults and couples seeking peaceful relaxation.',
-  },
-  {
-    id: 'excursions',
-    question: 'Can special occasions and private boat trips be arranged?',
-    answer:
-      'Yes. Our concierge specializes in private wooden boat excursions to Paxos, Antipaxos, and secluded sea caves, as well as sunset dining arrangements and celebration flowers.',
-  },
-  {
-    id: 'checkin',
-    question: 'What are the check-in and check-out times?',
-    answer:
-      'Check-in begins at 15:00, allowing us to meticulously prepare your suite. Check-out is until 11:00. Luggage storage and pool access are warmly available for early arrivals or late departures.',
-  },
-];
-
 export const hotelContact = {
   name: 'Irida Hotel',
   phone: '+30 268 403 2564',
@@ -222,7 +177,6 @@ export const navLinks = [
   { label: 'Experiences', href: '#experiences' },
   { label: 'Accolades', href: '#accolades' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Concierge FAQ', href: '#faq' },
   { label: 'Location', href: '#location' },
   { label: 'Contact', href: '#contact' },
 ];

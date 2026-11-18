@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import About from '@/components/About';
 import Booking from '@/components/Booking';
-import ConciergeFAQ from '@/components/ConciergeFAQ';
 import Contact from '@/components/Contact';
 import Experiences from '@/components/Experiences';
 import Footer from '@/components/Footer';
@@ -36,13 +35,11 @@ function App() {
         <Testimonials />
         {/* 6. Gallery */}
         <Gallery />
-        {/* 7. Boutique Concierge FAQ */}
-        <ConciergeFAQ />
-        {/* 8. Location */}
+        {/* 7. Location */}
         <Location />
-        {/* 9. Booking Request Widget */}
+        {/* 8. Booking Request Widget */}
         <Booking selectedSuite={selectedSuite} onSuiteChange={setSelectedSuite} />
-        {/* 10. Contact Form & Direct Details */}
+        {/* 9. Contact Form & Direct Details */}
         <Contact />
       </main>
       <Footer />
