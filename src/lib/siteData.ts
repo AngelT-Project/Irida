@@ -102,13 +102,14 @@ export const hotelContact = {
   name: 'Irida Hotel',
   phone: '+30 268 403 2564',
   phoneHref: 'tel:+302684032564',
-  email: 'info@iridaboutiquehotel.gr',
+  email: 'info@iridahotel.gr',
   mapEmbed: 'https://www.google.com/maps?q=39.284356,20.404706&z=17&output=embed',
   directions: 'https://www.google.com/maps/dir/?api=1&destination=39.284356,20.404706',
 };
 
 export const navLinks = [
   { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
   { label: 'Rooms & Suites', href: '#rooms' },
   { label: 'Experiences', href: '#experiences' },
   { label: 'Gallery', href: '#gallery' },

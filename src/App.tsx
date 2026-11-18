@@ -6,7 +6,6 @@ import Experiences from '@/components/Experiences';
 import Footer from '@/components/Footer';
 import Gallery from '@/components/Gallery';
 import Hero from '@/components/Hero';
-import LocalCulture from '@/components/LocalCulture';
 import Location from '@/components/Location';
 import Navbar from '@/components/Navbar';
 import Rooms from '@/components/Rooms';
@@ -15,17 +14,24 @@ function App() {
   const [selectedSuite, setSelectedSuite] = useState('');
 
   return (
-    <div className="min-h-screen bg-sand-50">
+    <div className="min-h-screen bg-sand-50 text-ink-900 antialiased selection:bg-gold-500 selection:text-white">
       <Navbar />
       <main>
+        {/* 1. Hero */}
         <Hero />
+        {/* 2. Welcome Story */}
         <About />
+        {/* 3. Rooms and Suites */}
         <Rooms onBookSuite={setSelectedSuite} />
+        {/* 4. Experiences */}
         <Experiences />
-        <LocalCulture />
+        {/* 5. Gallery */}
         <Gallery />
+        {/* 6. Location */}
         <Location />
+        {/* 7. Booking Request Widget */}
         <Booking selectedSuite={selectedSuite} onSuiteChange={setSelectedSuite} />
+        {/* 8. Contact Form & Direct Details */}
         <Contact />
       </main>
       <Footer />

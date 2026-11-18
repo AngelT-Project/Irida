@@ -37,14 +37,17 @@ export default function Gallery() {
     <section id="gallery" className="bg-sand-100 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Gallery</p>
-          <h2 className="mt-4 text-4xl font-medium sm:text-5xl">Gallery</h2>
-          <p className="mt-6 text-lg leading-relaxed text-ink-700">
-            Suites, sea views, sunsets, and moments from the Irida Hotel grounds.
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Visual Impressions</p>
+          <h2 className="mt-4 font-serif text-4xl font-medium sm:text-5xl text-ink-900">Glimpses of Irida Hotel</h2>
+          <p className="mt-4 text-base italic text-gold-600">
+            Immerse yourself in our coastal haven: explore sea-view terraces, tranquil suite interiors, and golden hour light.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-ink-700">
+            Suites, sea horizons, sunsets, and peaceful moments from the Irida Hotel grounds in Parga. Click any photo to view full size.
           </p>
         </Reveal>
 
-        <div role="tablist" aria-label="Filter gallery" className="mt-10 flex flex-wrap justify-center gap-3">
+        <div role="tablist" aria-label="Filter gallery photos" className="mt-10 flex flex-wrap justify-center gap-2.5">
           {galleryFilters.map((label) => (
             <button
               key={label}
@@ -55,7 +58,7 @@ export default function Gallery() {
                 setFilter(label);
                 setOpenIndex(null);
               }}
-              className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+              className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                 filter === label
                   ? 'bg-ink-900 text-white shadow-md'
                   : 'bg-white text-ink-800 hover:bg-sand-200'

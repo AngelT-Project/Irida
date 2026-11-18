@@ -28,9 +28,12 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Accommodation</p>
-          <h2 className="mt-4 text-4xl font-medium sm:text-5xl">Our Rooms and Suites</h2>
-          <p className="mt-6 text-lg leading-relaxed text-ink-700">
-            Seventeen suites in four distinct categories. Explore each one before you choose your stay.
+          <h2 className="mt-4 font-serif text-4xl font-medium sm:text-5xl">Our Rooms and Suites</h2>
+          <p className="mt-4 text-base italic text-gold-600">
+            Browse our four curated collections, explore full suite details with photos, and choose your private sanctuary.
+          </p>
+          <p className="mt-4 text-lg leading-relaxed text-ink-700">
+            Seventeen suites thoughtfully designed across four distinct categories. Click any suite to view photography, amenities, and reserve your stay.
           </p>
         </Reveal>
 
@@ -38,47 +41,64 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
           const categorySuites = suitesInCategory(category.id);
           return (
             <div key={category.id} className="mt-20 first:mt-16">
-              <Reveal className="flex flex-col gap-3 border-b border-sand-300 pb-6 sm:flex-row sm:items-end sm:justify-between">
+              <Reveal className="flex flex-col gap-4 border-b border-sand-300 pb-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <h3 className="text-3xl font-medium">{category.title}</h3>
-                  <p className="mt-3 max-w-2xl leading-relaxed text-ink-700">{category.summary}</p>
+                  <h3 className="font-serif text-3xl font-medium text-ink-900">{category.title}</h3>
+                  <p className="mt-2 max-w-2xl leading-relaxed text-ink-700">{category.summary}</p>
+                  {/* Suite names listed under the group so visitors can browse them easily */}
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-ink-700">Suites in this collection:</span>
+                    {categorySuites.map((s) => (
+                      <span
+                        key={s.name}
+                        className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-medium text-ink-800 shadow-sm"
+                      >
+                        {s.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">
+                <span className="self-start text-xs font-semibold uppercase tracking-[0.2em] text-gold-600 sm:self-end">
                   {categorySuites.length} suites
                 </span>
               </Reveal>
 
               <div className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
                 {categorySuites.map((suite, index) => (
-                  <Reveal key={suite.name} delay={index * 100}>
+                  <Reveal key={suite.name} delay={index * 80}>
                     <button
                       type="button"
                       onClick={() => setActive({ suite, category })}
-                      aria-label={`View ${suite.name} Suite`}
-                      className="group flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white text-left shadow-md transition-all duration-500 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
+                      aria-label={`View photos and details for ${suite.name} Suite`}
+                      className="group flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white text-left shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
                     >
                       <div className="relative h-64 overflow-hidden">
                         <img
                           src={suite.images[0]}
-                          alt={`${suite.name} Suite`}
+                          alt={`${suite.name} Suite interior`}
                           loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         />
-                        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900">
-                          <Images className="h-3.5 w-3.5" aria-hidden="true" />
+                        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-ink-900 shadow-sm backdrop-blur-sm">
+                          <Images className="h-3.5 w-3.5 text-gold-600" aria-hidden="true" />
                           {suite.images.length} photos
                         </span>
                       </div>
                       <div className="flex flex-1 flex-col p-7">
-                        <h4 className="font-serif text-2xl text-ink-900">{suite.name}</h4>
-                        <p className="mt-3 flex-1 leading-relaxed text-ink-700">{suite.description}</p>
-                        <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-600">
-                          View Suite
-                          <ArrowRight
-                            className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                            aria-hidden="true"
-                          />
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-serif text-2xl font-medium text-ink-900">{suite.name}</h4>
+                          <span className="text-xs uppercase tracking-wider text-gold-600">{category.title.replace(' Suites', '')}</span>
+                        </div>
+                        <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-700">{suite.description}</p>
+                        <div className="mt-6 flex items-center justify-between border-t border-sand-200 pt-4">
+                          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 transition-colors group-hover:text-gold-500">
+                            View Suite Details
+                            <ArrowRight
+                              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </div>
                       </div>
                     </button>
                   </Reveal>

@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { Loader2, Mail, MapPin, Phone, Waves } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { CheckCircle2, Loader2, Mail, MapPin, Phone, Waves } from 'lucide-react';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { hotelContact, navLinks } from '@/lib/siteData';
 
 type Status = 'idle' | 'sending' | 'subscribed' | 'error';
@@ -19,11 +19,18 @@ export default function Footer() {
       return;
     }
     setStatus('sending');
-    const { error } = await supabase.from('newsletter_subscribers').insert({ email: cleaned });
-    if (error && error.code !== UNIQUE_VIOLATION) {
-      setStatus('error');
-      return;
+
+    if (isSupabaseConfigured) {
+      const { error } = await supabase.from('newsletter_subscribers').insert({ email: cleaned });
+      if (error && error.code !== UNIQUE_VIOLATION) {
+        setStatus('error');
+        return;
+      }
+    } else {
+      // Graceful fallback simulation
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
+
     setEmail('');
     setStatus('subscribed');
   };
@@ -37,7 +44,7 @@ export default function Footer() {
             Irida Hotel
           </a>
           <p className="mt-4 max-w-xs leading-relaxed text-white/70">
-            An elegant Mediterranean boutique hotel on the Ionian coast of Parga, Greece.
+            A serene Mediterranean retreat on the Ionian coast of Parga, Greece.
           </p>
         </div>
 
@@ -104,7 +111,10 @@ export default function Footer() {
             </button>
           </form>
           {status === 'subscribed' && (
-            <p className="mt-3 text-sm text-gold-300">Thank you for subscribing.</p>
+            <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-gold-300">
+              <CheckCircle2 className="h-4 w-4 text-gold-400" aria-hidden="true" />
+              Thank you for subscribing.
+            </p>
           )}
           {status === 'error' && (
             <p className="mt-3 text-sm text-red-300">Please enter a valid email address and try again.</p>

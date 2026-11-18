@@ -114,10 +114,10 @@ export default function SuiteDialog({ suite, category, onClose, onBook }: SuiteD
 
         <div className="p-6 sm:p-10">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">{category.title}</p>
-          <h3 id="suite-dialog-title" className="mt-3 text-3xl font-medium sm:text-4xl">
+          <h3 id="suite-dialog-title" className="mt-3 font-serif text-3xl font-medium text-ink-900 sm:text-4xl">
             {suite.name} Suite
           </h3>
-          <p className="mt-4 text-lg leading-relaxed text-ink-700">{suite.description}</p>
+          <p className="mt-4 text-base leading-relaxed text-ink-700">{suite.description}</p>
 
           {(suite.size || suite.guests) && (
             <dl className="mt-8 grid gap-4 rounded-2xl border border-sand-200 bg-white p-5 text-sm sm:grid-cols-2">

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
-import { Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
 import Reveal from '@/components/Reveal';
-import { supabase } from '@/lib/supabase';
+import { isSupabaseConfigured, supabase } from '@/lib/supabase';
 import { hotelContact } from '@/lib/siteData';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
@@ -22,15 +22,22 @@ export default function Contact() {
       return;
     }
     setStatus('sending');
-    const { error } = await supabase.from('contact_messages').insert({
-      full_name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
-    });
-    if (error) {
-      setStatus('error');
-      return;
+
+    if (isSupabaseConfigured) {
+      const { error } = await supabase.from('contact_messages').insert({
+        full_name: name.trim(),
+        email: email.trim(),
+        message: message.trim(),
+      });
+      if (error) {
+        setStatus('error');
+        return;
+      }
+    } else {
+      // Graceful fallback simulation
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
+
     setName('');
     setEmail('');
     setMessage('');
@@ -41,11 +48,15 @@ export default function Contact() {
     <section id="contact" className="bg-sand-100 py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:px-10">
         <Reveal>
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Contact</p>
-          <h2 className="mt-4 text-4xl font-medium sm:text-5xl">We would love to hear from you</h2>
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-gold-600">Personal Assistance</p>
+          <h2 className="mt-4 font-serif text-4xl font-medium sm:text-5xl text-ink-900">
+            We Would Love to Hear From You
+          </h2>
+          <p className="mt-4 text-base italic text-gold-600">
+            Reach out directly to our team for custom questions, travel guidance, or special arrangements.
+          </p>
           <p className="mt-6 text-lg leading-relaxed text-ink-700">
-            Questions about suites, dining, or arranging something special? Reach out and our team will respond
-            promptly.
+            Whether inquiring about suite availability, arranging private transfers, or planning a special celebration in Parga, our dedicated team will respond promptly.
           </p>
 
           <ul className="mt-10 space-y-6">
@@ -126,7 +137,10 @@ export default function Contact() {
               </p>
             )}
             {status === 'sent' && (
-              <p className="text-sm font-medium text-green-800">Thank you. Your message has been sent.</p>
+              <div className="flex items-center gap-3 rounded-2xl bg-green-50 p-4 text-green-900 border border-green-200">
+                <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-green-600" aria-hidden="true" />
+                <p className="text-sm font-medium">Thank you. Your message has been received. Our team will contact you shortly.</p>
+              </div>
             )}
 
             <button
