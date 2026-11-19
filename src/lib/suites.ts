@@ -1,4 +1,4 @@
-import { photoUrl, type SuiteCategory } from '@/lib/siteData';
+import type { SuiteCategory } from '@/lib/siteData';
 
 export type Suite = {
   name: string;
@@ -11,20 +11,15 @@ export type Suite = {
   guests: string;
 };
 
-const placeholderPool = [
-  '12652920', '26859049', '28054852', '27626174', '3688261', '7368344', '210604',
-  '13813465', '34645131', '2725675', '24807130', '7722153', '6466496', '31817153',
-  '29702285', '40624372', '8135526', '5461604', '19754222', '10890710', '34516518',
-  '30767897', '6876828', '14025909', '26886816', '16113326',
-].map(photoUrl);
+import anemone1 from '@/assets/suites/anemone/anemone-1.jpg';
+import anemone2 from '@/assets/suites/anemone/anemone-2.jpg';
+import anemone3 from '@/assets/suites/anemone/anemone-3.jpg';
+import anemone4 from '@/assets/suites/anemone/anemone-4.jpg';
+import anemone5 from '@/assets/suites/anemone/anemone-5.jpg';
 
-const PLACEHOLDER_IMAGES_PER_SUITE = 4;
-
-const placeholderImages = (suiteIndex: number) =>
-  Array.from(
-    { length: PLACEHOLDER_IMAGES_PER_SUITE },
-    (_, offset) => placeholderPool[(suiteIndex * 3 + offset) % placeholderPool.length],
-  );
+const suiteImages: Record<string, string[]> = {
+  Anemone: [anemone1, anemone2, anemone3, anemone4, anemone5],
+};
 
 const suiteEntries: Omit<Suite, 'images'>[] = [
   // I. Deluxe Suites
@@ -189,9 +184,9 @@ const suiteEntries: Omit<Suite, 'images'>[] = [
   },
 ];
 
-export const suites: Suite[] = suiteEntries.map((entry, index) => ({
+export const suites: Suite[] = suiteEntries.map((entry) => ({
   ...entry,
-  images: placeholderImages(index),
+  images: suiteImages[entry.name] ?? [],
 }));
 
 export const suitesInCategory = (categoryId: string) =>
