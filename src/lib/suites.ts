@@ -11,15 +11,33 @@ export type Suite = {
   guests: string;
 };
 
-import anemone1 from '@/assets/suites/anemone/anemone-1.jpg';
-import anemone2 from '@/assets/suites/anemone/anemone-2.jpg';
-import anemone3 from '@/assets/suites/anemone/anemone-3.jpg';
-import anemone4 from '@/assets/suites/anemone/anemone-4.jpg';
-import anemone5 from '@/assets/suites/anemone/anemone-5.jpg';
+const normalize = (value: string): string =>
+  value.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-const suiteImages: Record<string, string[]> = {
-  Anemone: [anemone1, anemone2, anemone3, anemone4, anemone5],
+const numberFromPath = (path: string): number => {
+  const match = path.match(/(\d+)\.[a-z0-9]+$/i);
+  return match ? parseInt(match[1], 10) : 0;
 };
+
+const suiteKeyFromFilename = (path: string): string => {
+  const filename = path.split('/').pop() ?? path;
+  const base = filename.replace(/\.[a-z0-9]+$/i, '').replace(/[-_\s]?\d+$/, '');
+  return normalize(base);
+};
+
+const suiteImageModules = import.meta.glob(
+  '../assets/suites/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}',
+  { eager: true, query: '?url', import: 'default' },
+) as Record<string, string>;
+
+const discoveredBySuiteKey = Object.entries(suiteImageModules)
+  .sort(([a], [b]) => numberFromPath(a) - numberFromPath(b))
+  .reduce<Record<string, string[]>>((acc, [path, url]) => {
+    const key = suiteKeyFromFilename(path);
+    if (!key) return acc;
+    (acc[key] ??= []).push(url);
+    return acc;
+  }, {});
 
 const suiteEntries: Omit<Suite, 'images'>[] = [
   // I. Deluxe Suites
@@ -186,7 +204,7 @@ const suiteEntries: Omit<Suite, 'images'>[] = [
 
 export const suites: Suite[] = suiteEntries.map((entry) => ({
   ...entry,
-  images: suiteImages[entry.name] ?? [],
+  images: discoveredBySuiteKey[normalize(entry.name)] ?? [],
 }));
 
 export const suitesInCategory = (categoryId: string) =>
