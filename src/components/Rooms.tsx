@@ -77,13 +77,13 @@ export default function Rooms({ onBookSuite }: RoomsProps) {
                       aria-label={`View photos and details for ${suite.name} Suite`}
                       className="group flex h-full w-full flex-col overflow-hidden rounded-3xl bg-white text-left shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"
                     >
-                      <div className="relative h-64 overflow-hidden bg-sand-200">
+                      <div className="relative flex min-h-[16rem] max-h-[28rem] items-center justify-center overflow-hidden bg-sand-200">
                         {suite.images.length > 0 ? (
                           <img
                             src={suite.images[0]}
                             alt={`${suite.name} Suite interior`}
                             loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            className="max-h-[28rem] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                           />
                         ) : (
                           <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-ink-700/60">

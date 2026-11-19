@@ -64,7 +64,7 @@ export default function SuiteDialog({ suite, category, onClose, onBook }: SuiteD
         </button>
 
         <div
-          className="relative bg-ink-900"
+          className="relative flex min-h-[18rem] max-h-[32rem] items-center justify-center bg-ink-900"
           onTouchStart={(event) => setTouchStartX(event.touches[0].clientX)}
           onTouchEnd={handleTouchEnd}
         >
@@ -72,7 +72,7 @@ export default function SuiteDialog({ suite, category, onClose, onBook }: SuiteD
             key={suite.images[activeIndex]}
             src={suite.images[activeIndex]}
             alt={`${suite.name} suite photo ${activeIndex + 1} of ${total}`}
-            className="h-72 w-full object-cover animate-fade-up [animation-duration:500ms] sm:h-96"
+            className="max-h-[32rem] w-full object-contain animate-fade-up [animation-duration:500ms]"
           />
           <button
             type="button"
@@ -103,11 +103,11 @@ export default function SuiteDialog({ suite, category, onClose, onBook }: SuiteD
               onClick={() => setActiveIndex(index)}
               aria-label={`Show photo ${index + 1}`}
               aria-current={index === activeIndex}
-              className={`h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
+              className={`h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 bg-sand-200 transition-all ${
                 index === activeIndex ? 'border-gold-500' : 'border-transparent opacity-70 hover:opacity-100'
               }`}
             >
-              <img src={src} alt="" className="h-full w-full object-cover" />
+              <img src={src} alt="" className="h-full w-full object-contain" />
             </button>
           ))}
         </div>
